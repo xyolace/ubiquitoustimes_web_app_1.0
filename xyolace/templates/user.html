@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title>{{ PAGETOP.Title }}</title>
+    <link rel="icon" sizes="32x32" href="{{ PAGETOP.Image.url }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@100;600;800&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Top Navbar -->
+    <div class="container-fluid sticky-top px-0">
+        <div class="container-fluid topbar bg-dark d-none d-lg-block">
+            <div class="container px-0">
+                <div class="topbar-top d-flex justify-content-between flex-lg-wrap">
+                    <div class="top-info flex-grow-0">
+                        <i id="current-date" class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body">Tuesday, Sep 12, 2024</span></i> 
+                    </div>                    
+                    <div class="top-link flex-lg-wrap">
+
+                        <div class="d-flex icon">
+                            <p class="mb-0 text-white me-2">Follow Us:</p>
+                            <a href="" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
+                            <a href="" class="me-2"><i class="fab fa-twitter text-body link-hover"></i></a>
+                            <a href="" class="me-2"><i class="fab fa-instagram text-body link-hover"></i></a>
+                            <a href="" class="me-2"><i class="fab fa-youtube text-body link-hover"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Navbar -->
+
+    <div class="container-fluid bg-light">
+        <div class="container px-0">
+            <nav class="navbar navbar-light navbar-expand-xl">
+                <a href="{{ NAV_LINKS.Link_href }}" class="navbar-brand mt-3">
+                    <p class="text display-6 mb-2" style="line-height: 0;">{{ NAVBAR.Title }}</p>
+                    <small class="text-body fw-normal" style="letter-spacing: 12px;">{{ NAVBAR.Tag_line }}</small>
+                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        {% for NAV_LINKS in NAV_LINKS %}
+                        <a href="{{ NAV_LINKS.Link_href }}" class="nav-item nav-link active">{{ NAV_LINKS.Nav_links }}</a>
+                        {% endfor %}
+                    </div>
+                    <div class="d-flex flex-nowrap pt-3 pt-xl-0">
+                        <div class="d-flex">
+                            <div class="d-flex align-items-center">
+                                <strong class="fs-4 text-secondary">31°C</strong>
+                                <div class="d-flex flex-column ms-2" style="width: 150px;">
+                                    <span class="text-body">NEW YORK,</span>
+                                    <small>Mon. 10 jun 2024</small>
+                                </div>
+                                {% if user.is_authenticated %}
+                                <p>{{ user.username }}</br><a href="logout" style="font-size: smaller;">Logout</a> <a href="" style="font-size: smaller;">Profile</a></p>
+                                {% else %}
+                                <a href="signin" class="nav-item nav-link active">Login/Signup</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+<!-- Navbar End -->
+
+<div class="row g-4 px-5 py-5">
+    <div class="bg-light rounded p-4 my-4">
+        <h4 class="mb-4">Profile</h4>
+            <div class="row g-4">
+                {% if user.is_authenticated %}
+                <div class="col-lg-6">
+                    <a href="{% url 'change_user_info' username=user.username %}">Change Username</a>
+                    <h6 class="mb-4">Username: {{ user.username }}</h6>
+                    <a href="{% url 'change_user_info' username=user.username %}">Change Email</a> 
+                    <h6 class="mb-4">Email: {{ user.email }}</h6>
+                    <a href="{% url 'change_user_info' username=user.username %}">Change Password</a>
+                    <h6 class="mb-4">Password: *********</h6> 
+                </div>
+                {% endif %}
+        <a href="" class="nav-item nav-link active">Delete Account</a>
+    </div>
+</div>
+
+
+<script>
+    // Function to update the current date
+    function updateCurrentDate() {
+        var currentDate = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+        document.getElementById('current-date').innerHTML = '<span class="text-body">' + formattedDate + '</span>';
+    }
+
+    // Call the function when the page is loaded
+    window.addEventListener('load', updateCurrentDate);
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'assets/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+         
+<!-- Include the Bootstrap JavaScript files -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+</body>
