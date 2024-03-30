@@ -1,2 +1,2 @@
 # ubiquitoustimes-web-app
-Django web application of ubiquitous times
+Django web application of ubiquitous times.
