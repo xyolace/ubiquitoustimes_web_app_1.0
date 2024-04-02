@@ -83,7 +83,6 @@
                             <strong class="fs-4 text-secondary">UBUTIMES</strong>
                             <div class="d-flex flex-column ms-2" style="width: 150px;">
                                 <span class="text-body">INDIA,</span>
-                                <small><i id="current-date" class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body"></span></i> </small>
                             </div>
                         </div>
                     </div>
@@ -405,7 +404,7 @@
                                     <a href="/Latest-News/detail/{{ ALLNEWSTODAY.Title }}/" class="h6 text-white">
                                         {{ ALLNEWSTODAY.Text|slice:":25"  }}...
                                     </a>
-                                    <small class="text-white d-block"><i class="fas fa-calendar-alt me-1"></i> Dec 9, 2024</small>
+                                    <small class="text-white d-block"><i class="fas fa-calendar-alt me-1"></i>{{ ALLNEWSTODAY.Time }}</small>
                                 </div>
                             </div>
                         </a>
@@ -452,7 +451,7 @@
                 <span class="text-light"><a href="{{ WEBSITE_TAGS.Site_name_link }}"><i class="fas fa-copyright text-light me-2"></i>{{ WEBSITE_TAGS.Site_name }}</a>, {{ WEBSITE_TAGS.Site_after_name }}</span>
             </div>
             <div class="col-md-6 my-auto text-center text-md-end text-white">
-                {{ WEBSITE_TAGS.Disclaimer_head }} <a class="border-bottom" href="{{ WEBSITE_TAGS.Disclaimer_link }}"></a>
+                {{ WEBSITE_TAGS.Disclaimer_head }} <a class="border-bottom" href="{{ WEBSITE_TAGS.Disclaimer_link }}">{{ WEBSITE_TAGS.Disclaimer_link_title }}</a>
             </div>
         </div>
     </div>

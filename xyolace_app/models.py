@@ -155,7 +155,8 @@ class B3WEBSITE_TAGS(models.Model):
     Site_name = models.CharField(max_length = 50)
     Site_after_name = models.CharField(max_length = 50)
     Disclaimer_head = models.CharField(max_length = 50)
-    Disclaimer_link = models.CharField(max_length = 50)
+    Disclaimer_link_title = models.CharField(max_length = 50)
+    Disclaimer_link = models.URLField()
     Email_bar_inside = models.CharField(max_length = 50)
 
 class B4HORIZONTABANNER(models.Model):
